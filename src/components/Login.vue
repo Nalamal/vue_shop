@@ -35,7 +35,7 @@
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { Avatar, Lock } from '@element-plus/icons-vue'
-import { login } from '@/api/request'
+import { login } from '@/service/request'
 import { ElMessage } from 'element-plus'
 // 导入路由
 import router from '@/router'
