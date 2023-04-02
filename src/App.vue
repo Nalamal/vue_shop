@@ -1,4 +1,6 @@
-<template>App 根组件</template>
+<template>
+  <router-view></router-view>
+</template>
 
 <script setup lang="ts"></script>
 
