@@ -83,14 +83,7 @@ interface IMenulist {
   id: number
   authName: string
   path: string
-  children: [
-    {
-      id: number
-      authName: string
-      path: string
-      children: []
-    }
-  ]
+  children?: IMenulist[]
 }
 
 // 左侧菜单数据

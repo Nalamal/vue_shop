@@ -58,7 +58,12 @@
           </el-tooltip>
           <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
             <!-- 分配角色按钮 -->
-            <el-button type="warning" :icon="Setting" size="small" />
+            <el-button
+              type="warning"
+              :icon="Setting"
+              size="small"
+              @click="showAllotRoleDialog(scope.row)"
+            />
           </el-tooltip>
         </template>
       </el-table-column>
@@ -133,6 +138,38 @@
       </span>
     </template>
   </el-dialog>
+
+  <!-- 分配角色的对话框 -->
+  <el-dialog
+    v-model="setAllotDialogVisible"
+    title="分配角色"
+    width="50%"
+    @close="setRoleDialogClosed()"
+  >
+    <div>
+      <p>当前的用户：{{ userInfo.username }}</p>
+      <p>当前的角色：{{ userInfo.role_name }}</p>
+      <p>
+        分配新角色：
+        <el-select v-model="selectedRoleId" placeholder="请选择">
+          <el-option
+            v-for="item in roleslist"
+            :key="item.id"
+            :label="item.roleName"
+            :value="item.id"
+          >
+          </el-option>
+        </el-select>
+      </p>
+    </div>
+    <!-- 底部区域 -->
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="setAllotDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveUserRole"> 确认 </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -143,11 +180,14 @@ import {
   insertUser,
   selectUserById,
   updateUser,
-  deleteUserById
+  deleteUserById,
+  selectRoles,
+  updateUserRole
 } from '@/service/request'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ArrowRight, Search, Edit, Delete, Setting } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import type { IRoleslist } from '../power/Roles.vue'
 
 // 定义 userlist 的类型
 export interface IUserlist {
@@ -260,7 +300,12 @@ var validateMobile = (rule: any, value: any, callback: any) => {
 const formRules = reactive<FormRules>({
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 10, message: '用户名的长度在3~10个字符之间', trigger: 'blur' }
+    {
+      min: 3,
+      max: 10,
+      message: '用户名的长度在3~10个字符之间',
+      trigger: 'blur'
+    }
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
@@ -376,6 +421,59 @@ const removeUserById = (id: number) => {
     .catch(() => {
       ElMessage.info('删除用户取消')
     })
+}
+
+// 控制分配角色对话框的显示与隐藏
+let setAllotDialogVisible = ref(false)
+
+// 需要被分配角色的用户信息
+let userInfo = reactive({
+  id: 0,
+  username: '',
+  role_name: ''
+})
+
+// 已选中的角色Id值
+let selectedRoleId = ref('')
+
+// 所有的角色列表
+const roleslist = ref<IRoleslist[]>([])
+
+// 展示分配角色的对话框
+const showAllotRoleDialog = async (userinfo: IUserlist) => {
+  // 需要被分配角色的用户信息
+  userInfo = userinfo
+  // 展示分配角色的对话框之前，先查询所有角色信息
+  const { data: res } = await selectRoles()
+  if (res.meta.status !== 200) ElMessage.error('获取角色信息失败！')
+  roleslist.value = res.data
+  setAllotDialogVisible.value = true
+}
+
+// 分配角色对话框关闭事件
+const setRoleDialogClosed = () => {
+  // 清空分配角色表单内容
+  userInfo.username = ''
+  userInfo.role_name = ''
+  selectedRoleId.value = ''
+}
+
+// 点击按钮，分配角色
+const saveUserRole = async () => {
+  //
+  if (!selectedRoleId.value) {
+    return ElMessage.error('请选择要分配的角色！')
+  }
+
+  const { data: res } = await updateUserRole(userInfo.id, selectedRoleId.value)
+
+  if (res.meta.status !== 200) {
+    return ElMessage.error('更新角色失败！')
+  }
+
+  ElMessage.success('更新角色成功！')
+  getUserList()
+  setAllotDialogVisible.value = false
 }
 </script>
 

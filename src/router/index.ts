@@ -10,7 +10,9 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: () => import('@/components/Welcome.vue') },
-      { path: '/users', component: () => import('@/components/user/Users.vue') }
+      { path: '/users', component: () => import('@/components/user/Users.vue') },
+      { path: '/rights', component: () => import('@/components/power/rights.vue') },
+      { path: '/roles', component: () => import('@/components/power/roles.vue') }
     ]
   }
 ]
