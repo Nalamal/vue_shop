@@ -181,3 +181,56 @@ export const updateUserRole = (id: number, rid: string) => {
     }
   })
 }
+
+// 定义商品分类的请求
+export const selectGoodsCategories = (params?: object) => {
+  return service({
+    url: 'categories',
+    method: 'get',
+    params
+  })
+}
+
+// 添加分类的请求
+export const insertGoodsCategories = (data: object) => {
+  return service({
+    url: 'categories',
+    method: 'post',
+    data
+  })
+}
+
+// 定义根据 id 查询分类的请求
+export const selectGoodsCategoriesById = (id: number) => {
+  return service({
+    url: 'categories/' + id,
+    method: 'get'
+  })
+}
+
+// 定义 editCateForm 的类型
+interface IEditCateForm {
+  cat_id: number
+  cat_name: string
+  cat_pid: string
+  cat_level: number
+}
+
+// 定义编辑提交分类的请求
+export const updateGoodsCategories = (editCateForm: IEditCateForm) => {
+  return service({
+    url: 'categories/' + editCateForm.cat_id,
+    method: 'put',
+    data: {
+      cat_name: editCateForm.cat_name
+    }
+  })
+}
+
+// 定义删除分类的请求
+export const deleteGoodsCategories = (id: number) => {
+  return service({
+    url: 'categories/' + id,
+    method: 'delete'
+  })
+}
