@@ -2,7 +2,7 @@
 import service from './index'
 // 导入
 import type { IUserlist } from '@/components/user/Users.vue'
-import type { IRolelist } from '@/components/power/Roles.vue'
+import type { IRoleslist } from '@/components/power/Roles.vue'
 
 // 定义登录请求
 export const login = (data: Object) => {
@@ -153,7 +153,7 @@ export const selectTreeRights = () => {
 }
 
 // 定义删除角色指定权限的请求
-export const deleteRoleRight = (rolelist: IRolelist, id: number) => {
+export const deleteRoleRight = (rolelist: IRoleslist, id: number) => {
   return service({
     url: `roles/${rolelist.id}/rights/${id}`,
     method: 'delete'
