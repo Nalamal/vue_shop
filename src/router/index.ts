@@ -15,7 +15,8 @@ const routes: Array<RouteRecordRaw> = [
       { path: '/roles', component: () => import('@/components/power/Roles.vue') },
       { path: '/categories', component: () => import('@/components/goods/Cate.vue') }
     ]
-  }
+  },
+  { path: '/:pathMatch(.*)', component: () => import('@/components/NotFound.vue') }
 ]
 
 const router = createRouter({
