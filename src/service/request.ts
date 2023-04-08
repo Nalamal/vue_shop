@@ -2,7 +2,7 @@
 import service from './index'
 // 导入
 import type { IUserlist } from '@/components/user/Users.vue'
-import type { IRolelist } from '@/components/power/Roles.vue'
+import type { IRoleslist } from '@/components/power/Roles.vue'
 
 // 定义登录请求
 export const login = (data: Object) => {
@@ -153,7 +153,7 @@ export const selectTreeRights = () => {
 }
 
 // 定义删除角色指定权限的请求
-export const deleteRoleRight = (rolelist: IRolelist, id: number) => {
+export const deleteRoleRight = (rolelist: IRoleslist, id: number) => {
   return service({
     url: `roles/${rolelist.id}/rights/${id}`,
     method: 'delete'
@@ -179,5 +179,58 @@ export const updateUserRole = (id: number, rid: string) => {
     data: {
       rid: rid
     }
+  })
+}
+
+// 定义商品分类的请求
+export const selectGoodsCategories = (params?: object) => {
+  return service({
+    url: 'categories',
+    method: 'get',
+    params
+  })
+}
+
+// 添加分类的请求
+export const insertGoodsCategories = (data: object) => {
+  return service({
+    url: 'categories',
+    method: 'post',
+    data
+  })
+}
+
+// 定义根据 id 查询分类的请求
+export const selectGoodsCategoriesById = (id: number) => {
+  return service({
+    url: 'categories/' + id,
+    method: 'get'
+  })
+}
+
+// 定义 editCateForm 的类型
+interface IEditCateForm {
+  cat_id: number
+  cat_name: string
+  cat_pid: string
+  cat_level: number
+}
+
+// 定义编辑提交分类的请求
+export const updateGoodsCategories = (editCateForm: IEditCateForm) => {
+  return service({
+    url: 'categories/' + editCateForm.cat_id,
+    method: 'put',
+    data: {
+      cat_name: editCateForm.cat_name
+    }
+  })
+}
+
+// 定义删除分类的请求
+export const deleteGoodsCategories = (id: number) => {
+  return service({
+    url: 'categories/' + id,
+    method: 'delete'
   })
 }

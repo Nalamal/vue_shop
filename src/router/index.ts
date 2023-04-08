@@ -11,8 +11,9 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       { path: '/welcome', component: () => import('@/components/Welcome.vue') },
       { path: '/users', component: () => import('@/components/user/Users.vue') },
-      { path: '/rights', component: () => import('@/components/power/rights.vue') },
-      { path: '/roles', component: () => import('@/components/power/roles.vue') }
+      { path: '/rights', component: () => import('@/components/power/Rights.vue') },
+      { path: '/roles', component: () => import('@/components/power/Roles.vue') },
+      { path: '/categories', component: () => import('@/components/goods/Cate.vue') }
     ]
   }
 ]
