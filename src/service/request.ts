@@ -1,6 +1,6 @@
 // 导入 service 模块
 import service from './index'
-// 导入
+// 导入类型变量
 import type { IUserlist } from '@/components/user/Users.vue'
 import type { IRoleslist } from '@/components/power/Roles.vue'
 
@@ -232,5 +232,59 @@ export const deleteGoodsCategories = (id: number) => {
   return service({
     url: 'categories/' + id,
     method: 'delete'
+  })
+}
+
+// 定义查询商品列表的请求
+export const selectGoods = (params: object) => {
+  return service({
+    url: 'goods',
+    method: 'get',
+    params
+  })
+}
+
+// 定义编辑提交商品的请求
+// export const updateGood = () => {
+//   return service({
+//     url: 'goods' + id,
+//     method: 'put',
+//     data: {
+//       goods_name: '',
+//       goods_price: '',
+//       goods_number: '',
+//       goods_weight: '',
+//       goods_introduce
+//     }
+//   })
+// }
+
+// 定义删除商品的请求
+export const deleteGood = (id: number) => {
+  return service({
+    url: 'goods/' + id,
+    method: 'delete'
+  })
+}
+
+// 定义获取参数列表的请求
+export const selectCategoriesArributes = (id: number, sel: string) => {
+  return service({
+    url: `categories/${id}/attributes`,
+    method: 'get',
+    params: {
+      sel
+    }
+  })
+}
+
+// 定义上传图片的请求
+export const uploadPicture = (file: File) => {
+  return service({
+    url: 'upload',
+    method: 'post',
+    data: {
+      file
+    }
   })
 }

@@ -10,13 +10,36 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: () => import('@/components/Welcome.vue') },
-      { path: '/users', component: () => import('@/components/user/Users.vue') },
-      { path: '/rights', component: () => import('@/components/power/Rights.vue') },
-      { path: '/roles', component: () => import('@/components/power/Roles.vue') },
-      { path: '/categories', component: () => import('@/components/goods/Cate.vue') }
+      {
+        path: '/users',
+        component: () => import('@/components/user/Users.vue')
+      },
+      {
+        path: '/rights',
+        component: () => import('@/components/power/Rights.vue')
+      },
+      {
+        path: '/roles',
+        component: () => import('@/components/power/Roles.vue')
+      },
+      {
+        path: '/categories',
+        component: () => import('@/components/goods/Cate.vue')
+      },
+      {
+        path: '/goods',
+        component: () => import('@/components/goods/List.vue')
+      },
+      {
+        path: '/add',
+        component: () => import('@/components/goods/Add.vue')
+      }
     ]
   },
-  { path: '/:pathMatch(.*)', component: () => import('@/components/NotFound.vue') }
+  {
+    path: '/:pathMatch(.*)',
+    component: () => import('@/components/NotFound.vue')
+  }
 ]
 
 const router = createRouter({
