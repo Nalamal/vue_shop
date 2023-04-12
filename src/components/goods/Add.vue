@@ -278,7 +278,7 @@ const tabClicked = async () => {
 // 上传图片的URL地址
 const uploadURL = 'http://admin.lianghj.top/upload'
 
-let previewPath = ref('')
+// let previewPath = ref('')
 let previewVisible = ref(false)
 
 // 处理图片预览效果
