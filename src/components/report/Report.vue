@@ -67,7 +67,6 @@ onMounted(async () => {
 
   // 4. 准备数据和配置项
   const result = _.merge(res.data, options)
-  console.log(result)
 
   // 5. 展示数据
   myChart.setOption(result)
