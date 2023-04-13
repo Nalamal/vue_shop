@@ -182,7 +182,7 @@ export const updateUserRole = (id: number, rid: string) => {
   })
 }
 
-// 定义商品分类的请求
+// 定义查询商品分类的请求
 export const selectGoodsCategories = (params?: object) => {
   return service({
     url: 'categories',
@@ -200,7 +200,7 @@ export const insertGoodsCategories = (data: object) => {
   })
 }
 
-// 定义根据 id 查询分类的请求
+// 定义根据 id 查询商品分类的请求
 export const selectGoodsCategoriesById = (id: number) => {
   return service({
     url: 'categories/' + id,

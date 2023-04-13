@@ -33,6 +33,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/add',
         component: () => import('@/components/goods/Add.vue')
+      },
+      {
+        path: '/params',
+        component: () => import('@/components/goods/Params.vue')
       }
     ]
   },
