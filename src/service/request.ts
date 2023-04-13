@@ -288,3 +288,11 @@ export const uploadPicture = (file: File) => {
     }
   })
 }
+
+// 获取基于时间统计的折线图
+export const selectReports = () => {
+  return service({
+    url: 'reports/type/1',
+    method: 'get'
+  })
+}
