@@ -289,7 +289,24 @@ export const uploadPicture = (file: File) => {
   })
 }
 
-// 获取基于时间统计的折线图
+// 定义获取订单数据列表的请求
+export const selectOrders = (params: object) => {
+  return service({
+    url: 'orders',
+    method: 'get',
+    params
+  })
+}
+
+// 定义查询物流信息的请求
+export const selectLogistics = () => {
+  return service({
+    url: 'kuaidi/1106975712662',
+    method: 'get'
+  })
+}
+
+// 定义获取基于时间统计的折线图的请求
 export const selectReports = () => {
   return service({
     url: 'reports/type/1',

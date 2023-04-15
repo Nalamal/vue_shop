@@ -52,6 +52,7 @@ declare module '@vue/runtime-core' {
     List: typeof import('./src/components/goods/List.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
     NotFound: typeof import('./src/components/NotFound.vue')['default']
+    Order: typeof import('./src/components/order/Order.vue')['default']
     Params: typeof import('./src/components/goods/Params.vue')['default']
     Report: typeof import('./src/components/report/Report.vue')['default']
     Rights: typeof import('./src/components/power/Rights.vue')['default']
