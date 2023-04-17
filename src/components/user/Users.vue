@@ -460,7 +460,6 @@ const setRoleDialogClosed = () => {
 
 // 点击按钮，分配角色
 const saveUserRole = async () => {
-  //
   if (!selectedRoleId.value) {
     return ElMessage.error('请选择要分配的角色！')
   }
