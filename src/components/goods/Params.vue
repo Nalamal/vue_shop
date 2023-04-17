@@ -57,7 +57,9 @@
                 @blur="handleInputConfirm"
               />
               <!-- 添加按钮 -->
-              <el-button v-else size="small" @click="showInput(scope.row)"> + New Tag </el-button>
+              <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">
+                + New Tag
+              </el-button>
             </template>
           </el-table-column>
           <!-- 索引列 -->
@@ -105,7 +107,7 @@
               <!-- 输入的文本框 -->
               <el-input
                 v-if="scope.row.inputVisible"
-                ref="InputRef"
+                ref="inputRef"
                 v-model="scope.row.inputValue"
                 class="input-new-tag"
                 size="small"
@@ -113,7 +115,9 @@
                 @blur="handleInputConfirm"
               />
               <!-- 添加按钮 -->
-              <el-button v-else size="small" @click="showInput(scope.row)"> + New Tag </el-button>
+              <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">
+                + New Tag
+              </el-button>
             </template>
           </el-table-column>
           <!-- 索引列 -->
@@ -233,10 +237,23 @@ const cascaderProps = reactive({
 })
 
 // 级联选择框的双向绑定到的数组
-let selectedCateKeys = ref<number[]>([])
+const selectedCateKeys = ref<number[]>([])
 
 // 被激活的页签名称
-let activeName = ref('many')
+const activeName = ref('many')
+
+// 定义 tableData 的类型
+interface ITableData {
+  attr_id: number
+  attr_name: string
+  attr_sel: string
+  attr_vals: string | string[]
+  attr_write: string
+  cat_id: number
+  delete_time: null
+  inputValue: string
+  inputVisible: boolean
+}
 
 // 级联选择器选中项变化，会触发这个函数
 const handleChange = () => {
@@ -249,13 +266,13 @@ const handleTabChange = () => {
 }
 
 // 动态参数的数据
-let manyTableData = ref([])
+const manyTableData = ref<ITableData[]>([])
 
 // 静态属性的数据
-let onlyTableData = ref([])
+const onlyTableData = ref<ITableData[]>([])
 
 // 当前所选中的三级分类的Id
-let cateId = computed(() => {
+const cateId = computed(() => {
   if (selectedCateKeys.value.length === 3) {
     return selectedCateKeys.value[2]
   }
@@ -272,9 +289,9 @@ const getParamsData = async () => {
   res.data.forEach((item: any) => {
     item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : []
     // 控制文本框的显示与隐藏
-    item.inputVisible = ref(false)
+    item.inputVisible = false
     // 文本框中输入的值
-    item.inputValue = ref('')
+    item.inputValue = ''
   })
 
   // 根据 tab 页的不同，将请求得到的数据分别存储到动态参数和静态属性中
@@ -286,7 +303,7 @@ const getParamsData = async () => {
 }
 
 // 如果按钮需要被禁用，则返回true，否则返回false
-let isBtnDisabled = computed(() => {
+const isBtnDisabled = computed(() => {
   if (selectedCateKeys.value.length !== 3) {
     return true
   }
@@ -294,7 +311,7 @@ let isBtnDisabled = computed(() => {
 })
 
 // 动态计算标题的文本
-let titleText = computed(() => {
+const titleText = computed(() => {
   if (activeName.value === 'many') {
     return '动态参数'
   }
@@ -302,7 +319,7 @@ let titleText = computed(() => {
 })
 
 // 控制添加对话框的显示与隐藏
-let addDialogVisible = ref(false)
+const addDialogVisible = ref(false)
 
 // 添加表单的引用对象
 const addFormRef = ref<FormInstance>()
@@ -359,13 +376,13 @@ const showEditDialog = async (attr_id: number) => {
 }
 
 // 控制修改对话框的显示与隐藏
-let editDialogVisible = ref(false)
+const editDialogVisible = ref(false)
 
 // 修改表单的引用对象
 const editFormRef = ref<FormInstance>()
 
 // 添加参数的表单数据对象
-let editForm = ref({
+const editForm = ref({
   attr_id: 0,
   attr_name: '',
   cat_id: 0,
@@ -428,21 +445,22 @@ const removeParams = (id: number) => {
     })
 }
 
-// 文本框失去焦点，或而下了 Enter 都会触发
-const handleInputConfirm = () => {}
-
 // 添加 tag 标签的 input 引用对象
-const InputRef = ref<InstanceType<typeof ElInput>>()
+const inputRef = ref<InstanceType<typeof ElInput>>()
 
 // 点击按钮，展示文本输入框
-const showInput = (row: any) => {
+const showInput = (row: ITableData) => {
   row.inputVisible = true
   // 让文本框自动获取焦点
-  // nextTick 方法的作用，就是当页面上元素被重新渲染之后，才会指定回调函数中的代码
+  // nextTick 方法的作用，就是当页面上所有元素被重新渲染之后，才会指定回调函数中的代码
   nextTick(() => {
-    InputRef.value!.input!.focus()
+    console.log(inputRef.value) // 输出undefind
+    inputRef.value!.input!.focus()
   })
 }
+
+// 文本框失去焦点，或而下了 Enter 都会触发
+const handleInputConfirm = () => {}
 </script>
 
 <style scoped>
@@ -457,5 +475,9 @@ const showInput = (row: any) => {
 .input-new-tag {
   margin: 10px;
   width: 120px;
+}
+
+.button-new-tag {
+  margin: 10px;
 }
 </style>
