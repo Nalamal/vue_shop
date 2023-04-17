@@ -278,6 +278,54 @@ export const selectCategoriesArributes = (id: number, sel: string) => {
   })
 }
 
+// 定义添加动态参数或者静态属性的请求
+export const insertCategoriesArributes = (id: number, attr_name: string, attr_sel: string) => {
+  return service({
+    url: `categories/${id}/attributes`,
+    method: 'post',
+    data: {
+      attr_name,
+      attr_sel
+    }
+  })
+}
+
+// 定义根据 id 查询参数的请求
+export const selectCategoriesArributeById = (id: number, attr_id: number, attr_sel: string) => {
+  return service({
+    url: `categories/${id}/attributes/${attr_id}`,
+    method: 'get',
+    params: {
+      attr_sel
+    }
+  })
+}
+
+// 定义编辑提交参数的请求
+export const updateCategoriesArribute = (
+  id: number,
+  attr_id: number,
+  attr_name: string,
+  attr_sel: string
+) => {
+  return service({
+    url: `categories/${id}/attributes/${attr_id}`,
+    method: 'put',
+    data: {
+      attr_name,
+      attr_sel
+    }
+  })
+}
+
+// 定义删除参数的请求
+export const deleteCategoriesArribute = (id: number, attr_id: number) => {
+  return service({
+    url: `categories/${id}/attributes/${attr_id}`,
+    method: 'delete'
+  })
+}
+
 // 定义上传图片的请求
 export const uploadPicture = (file: File) => {
   return service({
