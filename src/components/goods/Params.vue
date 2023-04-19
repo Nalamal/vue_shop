@@ -50,8 +50,8 @@
               <el-input
                 v-if="scope.row.inputVisible"
                 ref="InputRef"
-                v-model="scope.row.inputValue"
                 class="input-new-tag"
+                v-model="scope.row.inputValue"
                 size="small"
                 @keyup.enter="handleInputConfirm"
                 @blur="handleInputConfirm"
@@ -115,7 +115,7 @@
                 @blur="handleInputConfirm"
               />
               <!-- 添加按钮 -->
-              <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">
+              <el-button v-else class="button-new-tag" size="small" @click="showInput">
                 + New Tag
               </el-button>
             </template>
@@ -212,7 +212,7 @@ interface ICatelist {
 }
 
 // 商品分类的数据列表，默认为空
-let catelist = ref<ICatelist[]>([])
+const catelist = ref<ICatelist[]>([])
 
 // 获取商品分类的请求
 const getCatelist = async () => {
@@ -449,12 +449,10 @@ const removeParams = (id: number) => {
 const inputRef = ref<InstanceType<typeof ElInput>>()
 
 // 点击按钮，展示文本输入框
-const showInput = (row: ITableData) => {
+const showInput = (row: any) => {
   row.inputVisible = true
-  // 让文本框自动获取焦点
-  // nextTick 方法的作用，就是当页面上所有元素被重新渲染之后，才会指定回调函数中的代码
+  // 下一次 dom 刷新时，让文本框自动获取焦点
   nextTick(() => {
-    console.log(inputRef.value) // 输出undefind
     inputRef.value!.input!.focus()
   })
 }
