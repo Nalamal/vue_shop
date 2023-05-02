@@ -306,14 +306,16 @@ export const updateCategoriesArribute = (
   id: number,
   attr_id: number,
   attr_name: string,
-  attr_sel: string
+  attr_sel: string,
+  attr_vals?: string
 ) => {
   return service({
     url: `categories/${id}/attributes/${attr_id}`,
     method: 'put',
     data: {
       attr_name,
-      attr_sel
+      attr_sel,
+      attr_vals
     }
   })
 }

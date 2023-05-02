@@ -38,23 +38,24 @@
           >添加参数</el-button
         >
         <!-- 动态参数表格 -->
-        <el-table :data="manyTableData" border stripe>
+        <el-table :data="manyTableData" row-key="cat_id" border stripe>
           <!-- 展开行 -->
           <el-table-column type="expand">
             <template #default="scope">
               <!-- 循环渲染 tag 标签 -->
+              <!--   @close="handleClose(i, scope.row)" -->
               <el-tag v-for="(item, i) in scope.row.attr_vals" :key="i" closable>
                 {{ item }}
               </el-tag>
               <!-- 输入的文本框 -->
               <el-input
                 v-if="scope.row.inputVisible"
-                ref="InputRef"
+                ref="inputRef"
                 class="input-new-tag"
                 v-model="scope.row.inputValue"
                 size="small"
-                @keyup.enter="handleInputConfirm"
-                @blur="handleInputConfirm"
+                @keyup.enter="handleInputConfirm(scope.row)"
+                @blur="handleInputConfirm(scope.row)"
               />
               <!-- 添加按钮 -->
               <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">
@@ -96,7 +97,7 @@
           >添加属性</el-button
         >
         <!-- 静态属性表格 -->
-        <el-table :data="onlyTableData" border stripe>
+        <el-table :data="onlyTableData" row-key="cat_id" border stripe>
           <!-- 展开行 -->
           <el-table-column type="expand">
             <template #default="scope">
@@ -108,14 +109,14 @@
               <el-input
                 v-if="scope.row.inputVisible"
                 ref="inputRef"
-                v-model="scope.row.inputValue"
                 class="input-new-tag"
+                v-model="scope.row.inputValue"
                 size="small"
-                @keyup.enter="handleInputConfirm"
-                @blur="handleInputConfirm"
+                @keyup.enter="handleInputConfirm(scope.row)"
+                @blur="handleInputConfirm(scope.row)"
               />
               <!-- 添加按钮 -->
-              <el-button v-else class="button-new-tag" size="small" @click="showInput">
+              <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">
                 + New Tag
               </el-button>
             </template>
@@ -325,7 +326,7 @@ const addDialogVisible = ref(false)
 const addFormRef = ref<FormInstance>()
 
 // 添加参数的表单数据对象
-let addForm = ref({
+const addForm = ref({
   attr_name: ''
 })
 
@@ -458,7 +459,36 @@ const showInput = (row: any) => {
 }
 
 // 文本框失去焦点，或而下了 Enter 都会触发
-const handleInputConfirm = () => {}
+const handleInputConfirm = (row: any) => {
+  // 修改展开行的数据
+  if (row.inputValue) {
+    row.attr_vals.push(row.inputValue)
+  }
+  row.inputVisible = false
+  row.inputValue = ''
+  // saveAttrVals(row)
+}
+
+// 删除对应的参数可选项
+// const handleClose = (i: number, row: any) => {
+//   row.attr_vals.splice(i, 1)
+//   saveAttrVals(row)
+// }
+
+// 将对 attr_vals 的操作，将保存到数据库
+// const saveAttrVals = async (row: any) => {
+//   const { data: res } = await updateCategoriesArribute(
+//     cateId.value!,
+//     editForm.value.attr_id,
+//     row.attr_name,
+//     row.attr_sel,
+//     row.attr_vals.join(' ')
+//   )
+//   if (res.meta.status !== 200) {
+//     return ElMessage.error('修改参数项失败！')
+//   }
+//   return ElMessage.success('修改参数项成功！')
+// }
 </script>
 
 <style scoped>

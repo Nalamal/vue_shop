@@ -70,7 +70,8 @@
 import { ref, reactive } from 'vue'
 import { ArrowRight, Search, Edit, Delete } from '@element-plus/icons-vue'
 import { selectGoods, deleteGood } from '@/service/request'
-import { ElMessage, ElMessageBox, dayjs } from 'element-plus'
+// import { ElMessage, ElMessageBox,  } from 'element-plus'
+import { dayjs } from 'element-plus'
 import router from '@/router'
 
 // 点击添加商品按钮，跳转到添加 Add.vue
