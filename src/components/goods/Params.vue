@@ -43,8 +43,12 @@
           <el-table-column type="expand">
             <template #default="scope">
               <!-- 循环渲染 tag 标签 -->
-              <!--   @close="handleClose(i, scope.row)" -->
-              <el-tag v-for="(item, i) in scope.row.attr_vals" :key="i" closable>
+              <el-tag
+                v-for="(item, i) in scope.row.attr_vals"
+                :key="i"
+                closable
+                @close="handleClose(i, scope.row)"
+              >
                 {{ item }}
               </el-tag>
               <!-- 输入的文本框 -->
@@ -198,7 +202,7 @@ import {
   updateCategoriesArribute,
   deleteCategoriesArribute
 } from '@/service/request'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessageBox, ElMessage } from 'element-plus'
 import type { FormInstance, FormRules, ElInput } from 'element-plus'
 import { ArrowRight, Edit, Delete } from '@element-plus/icons-vue'
 
@@ -466,29 +470,29 @@ const handleInputConfirm = (row: any) => {
   }
   row.inputVisible = false
   row.inputValue = ''
-  // saveAttrVals(row)
+  saveAttrVals(row)
 }
 
 // 删除对应的参数可选项
-// const handleClose = (i: number, row: any) => {
-//   row.attr_vals.splice(i, 1)
-//   saveAttrVals(row)
-// }
+const handleClose = (i: number, row: any) => {
+  row.attr_vals.splice(i, 1)
+  saveAttrVals(row)
+}
 
 // 将对 attr_vals 的操作，将保存到数据库
-// const saveAttrVals = async (row: any) => {
-//   const { data: res } = await updateCategoriesArribute(
-//     cateId.value!,
-//     editForm.value.attr_id,
-//     row.attr_name,
-//     row.attr_sel,
-//     row.attr_vals.join(' ')
-//   )
-//   if (res.meta.status !== 200) {
-//     return ElMessage.error('修改参数项失败！')
-//   }
-//   return ElMessage.success('修改参数项成功！')
-// }
+const saveAttrVals = async (row: any) => {
+  const { data: res } = await updateCategoriesArribute(
+    cateId.value!,
+    row.attr_id,
+    row.attr_name,
+    row.attr_sel,
+    row.attr_vals.join(' ')
+  )
+  if (res.meta.status !== 200) {
+    return ElMessage.error('修改参数项失败！')
+  }
+  return ElMessage.success('修改参数项成功！')
+}
 </script>
 
 <style scoped>

@@ -11,6 +11,11 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
+      eslintrc: {
+        enabled: false, // Default `false`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
       resolvers: [ElementPlusResolver()]
     }),
     Components({

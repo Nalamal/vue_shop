@@ -135,8 +135,8 @@ import {
   updateGoodsCategories,
   deleteGoodsCategories
 } from '@/service/request'
-import { ElMessage, ElMessageBox } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessageBox, ElMessage } from 'element-plus'
 
 // 查询条件
 const queryInfo = reactive({

@@ -260,13 +260,14 @@ const previewPath = ref('')
 const previewVisible = ref(false)
 
 // 处理图片预览效果
-const handleRemove: UploadProps['onRemove'] = (uploadFile) => {
+const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
   previewPath.value = uploadFile.response.data.url
   previewVisible.value = true
 }
 
 // 处理移除图片的操作
 const handlePreview: UploadProps['onPreview'] = (file) => {
+  console.log(file)
   // 1. 获取将要删除的图片的临时路径
   const filePath = file.response.data.tmp_path
   // 2. 从 pics 数组中，找到这个图片对饮的索引值
