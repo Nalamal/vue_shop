@@ -259,17 +259,19 @@ const previewPath = ref('')
 // 控制预览对话框的显示与隐藏
 const previewVisible = ref(false)
 
-// 处理图片预览效果
+// 处理图片移除效果
 const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
-  previewPath.value = uploadFile.response.data.url
+  console.log(uploadFile)
+
+  // previewPath.value = uploadFile.response.data.url
   previewVisible.value = true
 }
 
-// 处理移除图片的操作
+// 处理图片预览操作
 const handlePreview: UploadProps['onPreview'] = (file) => {
   console.log(file)
   // 1. 获取将要删除的图片的临时路径
-  const filePath = file.response.data.tmp_path
+  const filePath = file.url
   // 2. 从 pics 数组中，找到这个图片对饮的索引值
   const i = addForm.value.pics.findIndex((x) => x.pic === filePath)
   // 3. 调用数组的 splice 方法，把图片信息对象，从 pics 数组中移除
@@ -283,6 +285,7 @@ const headerObj = ref({
 
 // 监听图片上传成功的事件
 const handleSuccess = (response: any) => {
+  console.log(response)
   // 1. 拼接得到一个图片信息对象
   const picInfo = { pic: response.data.tmp_path }
   // 2. 将图片信息对象，push 到 pics 数组中

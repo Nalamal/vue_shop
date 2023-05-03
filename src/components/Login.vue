@@ -90,7 +90,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style lang="less" scoped>
 .login_container {
-  background-color: #2b4b6b;
+  background-color: #6b8770;
   height: 100%;
 }
 
