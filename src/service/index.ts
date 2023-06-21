@@ -4,6 +4,7 @@ import axios from 'axios'
 const service = axios.create({
   // 配置请求的根路径
   baseURL: 'http://admin.lianghj.top/',
+  // baseURL: 'https://lianghj.top:8888/api/private/v1/',
   // 配置请求超时时间为 1s
   timeout: 1000
 })
