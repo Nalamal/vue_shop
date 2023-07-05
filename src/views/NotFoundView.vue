@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="not-found">
     <h2>抱歉，您输入的路径不存在</h2>
     <h3>o(╥﹏╥)o</h3>
     <el-button type="primary" @click="logout">返回登录页</el-button>
@@ -14,7 +14,7 @@ const logout = () => {
 </script>
 
 <style scoped>
-div {
+.not-found {
   text-align: center;
 }
 </style>

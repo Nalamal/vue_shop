@@ -1,4 +1,5 @@
 <template>
+  <!-- 登录页面 -->
   <div class="login_container">
     <div class="login_box">
       <!-- 头部区域 -->
@@ -35,7 +36,7 @@
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { Avatar, Lock } from '@element-plus/icons-vue'
-import { login } from '@/service/request'
+import { login } from '@/service/modules/login'
 import { ElMessage } from 'element-plus'
 // 导入路由
 import router from '@/router'

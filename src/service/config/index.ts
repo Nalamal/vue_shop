@@ -1,5 +1,5 @@
 // 1. 手动切换
-export const BASE_URL = 'http://codercba.com:9002'
+export const BASE_URL = 'http://47.96.2.72:8889/api/private/v1/'
 export const TIME_OUT = 10000
 
 // 2. 依赖当前环境：development/production

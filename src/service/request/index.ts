@@ -67,7 +67,7 @@ class Request {
     return this.request({ ...config, method: 'DELETE' })
   }
   put<T = any>(config: MyRequestConfig<T>) {
-    return this.request({ ...config, method: 'put' })
+    return this.request({ ...config, method: 'PUT' })
   }
 }
 export default Request
