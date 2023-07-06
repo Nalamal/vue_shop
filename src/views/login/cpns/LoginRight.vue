@@ -102,7 +102,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   width: 500px;
   height: 400px;
 
-  margin: auto 20px;
+  margin: auto 40px;
 
   background-color: #fffc;
   opacity: 1;
@@ -126,11 +126,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
   h2 {
     margin-left: 20px;
     color: #34495e;
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 .el-form {
-  padding: 30px;
+  padding: 40px;
 }
 
 :deep(.el-form-item__content) {
