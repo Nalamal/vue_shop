@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 const useLoginStore = defineStore('loginStore', () => {
   const token = ref('')
