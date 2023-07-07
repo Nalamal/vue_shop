@@ -4,7 +4,7 @@
     <el-header>
       <!-- logo 区域 -->
       <div>
-        <img src="@/assets/img/logo.png" />
+        <img src="@/assets/images/logo.png" />
         <span>电商后台管理系统</span>
       </div>
       <!-- 登出按钮 -->
@@ -68,7 +68,7 @@ import { ref, type DefineComponent } from 'vue'
 import router from '@/router'
 import { ElMessage } from 'element-plus'
 import { Avatar, Box, Menu, List, ShoppingBag, TrendCharts } from '@element-plus/icons-vue'
-import { selectMenus } from '@/service/request'
+import { selectMenus } from '@/service/modules/home'
 
 // 退出功能
 const logout = () => {
@@ -157,7 +157,7 @@ activePath.value = window.sessionStorage.getItem('activePath')
     > img {
       width: 60px;
       height: 60px;
-      border-radius: 30px;
+      // border-radius: 30px;
     }
     > span {
       margin-left: 15px;

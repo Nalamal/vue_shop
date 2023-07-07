@@ -2,7 +2,7 @@
   <!-- 右侧盒子 -->
   <div class="box_right">
     <div class="title">
-      <img src="@/assets/images/avatar.jpg" alt="" />
+      <img src="@/assets/images/logo.png" alt="" />
       <h2>电商后台管理系统</h2>
     </div>
     <!-- 登录表单区域 -->
@@ -111,8 +111,8 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
   img {
     width: 100px;
-    border: 5px #ddd solid;
-    border-radius: 50%;
+    // border: 5px #ddd solid;
+    // border-radius: 50%;
   }
 
   h2 {
