@@ -20,7 +20,6 @@ const useLoginStore = defineStore('loginStore', () => {
   const loginAction = async (account: IAccount) => {
     // 发起登录请求
     const res = await login(account)
-    console.log(res)
     // 登录失败
     if (res.meta.status !== 200) {
       // 提示登录失败
