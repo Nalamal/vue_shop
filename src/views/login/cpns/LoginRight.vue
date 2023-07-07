@@ -6,7 +6,7 @@
       <h2>电商后台管理系统</h2>
     </div>
     <!-- 登录表单区域 -->
-    <el-form ref="ruleFormRef" :model="loginForm" :rules="rules" class="login_form">
+    <el-form class="login_form" ref="ruleFormRef" :model="loginForm" :rules="rules">
       <!-- 用户名 -->
       <el-form-item prop="username">
         <el-input
@@ -28,9 +28,11 @@
       </el-form-item>
       <!-- 按钮区域 -->
       <el-form-item class="btns">
-        <el-button round size="large" width="185px" @click="resetForm(ruleFormRef)">
+        <!-- 重置按钮 -->
+        <el-button round size="large" @click="resetForm(ruleFormRef)">
           <span class="btn">重置</span>
         </el-button>
+        <!-- 登录按钮 -->
         <el-button round type="primary" size="large" @click="submitForm(ruleFormRef)">
           <span class="btn">登录</span>
         </el-button>
@@ -41,13 +43,11 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { Avatar, Lock } from '@element-plus/icons-vue'
-import { login } from '@/service/modules/login'
-import { ElMessage } from 'element-plus'
-
-// 导入路由
-import router from '@/router'
+import useLoginStore from '@/stores/login'
+import type { IAccount } from '@/stores/login'
 
 // 提交表单所引用的对象
 const ruleFormRef = ref<FormInstance>()
@@ -59,33 +59,25 @@ const rules = reactive<FormRules>({
 })
 
 // 登录表单数据
-const loginForm = reactive({
-  username: '',
-  password: ''
+const loginForm = reactive<IAccount>({
+  username: 'admin',
+  password: '123456'
 })
+
+// 从 loginStore 中拿到 loginAction 方法
+const { loginAction } = useLoginStore()
 
 // 点击登录按钮，确认表单验证是否通过
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   // 验证表单是否符合需要
-  await formEl.validate(async (valid) => {
+  await formEl.validate((valid) => {
     if (valid) {
-      // 验证通过，发送请求
-      const { data: res } = await login(loginForm)
-      // 登录失败
-      if (res.meta.status !== 200) {
-        // 返回登录失败的信息
-        return ElMessage.error('登录失败！')
-      }
-      // 登录成功
-      ElMessage.success('登录成功！')
-      // 将 token 存储在 sessionStorage 中
-      window.sessionStorage.setItem('token', res.data.token)
-      // 实现路由跳转
-      router.push('/home')
+      // 验证通过，执行登录操作
+      loginAction(loginForm)
     } else {
       // 验证未通过，提示用户重新输入用户名和密码
-      ElMessage.info('请输入正确的用户名和密码！')
+      ElMessage('请重新输入用户名和密码')
     }
   })
 }
@@ -129,7 +121,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
     font-size: 35px;
   }
 }
-.el-form {
+.login_form {
   padding: 40px;
 }
 

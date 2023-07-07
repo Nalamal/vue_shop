@@ -68,7 +68,7 @@ import { ref, type DefineComponent } from 'vue'
 import router from '@/router'
 import { ElMessage } from 'element-plus'
 import { Avatar, Box, Menu, List, ShoppingBag, TrendCharts } from '@element-plus/icons-vue'
-import { selectMenus } from '@/service/request'
+import { selectMenus } from '@/service/modules/home'
 
 // 退出功能
 const logout = () => {
