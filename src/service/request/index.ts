@@ -11,6 +11,8 @@ class Request {
       (config) => {
         // Loading
         // console.log('全局请求成功拦截')
+        // 发送请求之前将 token 设置再请求头中
+        config.headers.Authorization = window.localStorage.getItem('token')
         return config
       },
       (err) => {
