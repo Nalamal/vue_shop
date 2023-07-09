@@ -2,7 +2,7 @@
   <div class="breadcrumb">
     <!-- 面包屑导航区域 -->
     <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item :to="{ path: props.path }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item to="/home">首页</el-breadcrumb-item>
       <el-breadcrumb-item>{{ props.firstItem }}</el-breadcrumb-item>
       <el-breadcrumb-item>{{ props.secondItem }}</el-breadcrumb-item>
     </el-breadcrumb>
@@ -14,8 +14,6 @@ import { ArrowRight } from '@element-plus/icons-vue'
 
 // 接收父组件传递过来的值
 const props = defineProps({
-  // 面包屑路径
-  path: String,
   // 一级菜单名
   firstItem: String,
   // 二级菜单名

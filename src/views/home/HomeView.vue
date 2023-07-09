@@ -19,9 +19,9 @@
 
 <script setup lang="ts">
 // 引入头部组件
-import HomeHeader from './cpns/HomeHeader.vue'
+import HomeHeader from './cpns/header/HomeHeader.vue'
 // 引入侧边栏组件
-import HomeMenu from './cpns/HomeMenu.vue'
+import HomeMenu from './cpns/menu/HomeMenu.vue'
 </script>
 
 <style lang="less" scoped>

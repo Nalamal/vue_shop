@@ -3,7 +3,7 @@ import service from '@/service'
 import type { IUserlist } from '@/components/user/Users.vue'
 
 // 定义获取用户数据列表请求
-export const selectUsers = (params: object) => {
+export const selectUser = (params: object) => {
   return service.get({
     url: 'users',
     params

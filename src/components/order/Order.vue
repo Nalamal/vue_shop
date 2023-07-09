@@ -108,7 +108,7 @@ import { ArrowRight, Search, Edit, Location } from '@element-plus/icons-vue'
 import { selectOrders, selectLogistics } from '@/service/request'
 import { ElMessage, dayjs } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
-import cityData from './citydata'
+import cityData from '@/utils/citydata'
 
 // 查询条件
 const queryInfo = reactive({
@@ -221,3 +221,4 @@ const showLogisticsBox = async () => {
   width: 100%;
 }
 </style>
+../utils/citydata

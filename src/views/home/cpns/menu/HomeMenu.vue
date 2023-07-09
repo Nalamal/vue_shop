@@ -57,9 +57,9 @@ import { Avatar, Box, ShoppingBag, List, TrendCharts } from '@element-plus/icons
 const iscollapse = ref(false)
 
 // 点击按钮切换表单的折叠与展开
-const toggleCollapse = () => {
-  iscollapse.value = !iscollapse.value
-}
+// const toggleCollapse = () => {
+//   iscollapse.value = !iscollapse.value
+// }
 
 // 从 menu 仓库中取出数据
 const menu = useMenuStore()

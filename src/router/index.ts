@@ -6,20 +6,19 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/login', component: () => import('@/views/login/LoginView.vue') },
   {
     path: '/home',
-    // component: () => import('@/components/Home.vue'),
     component: () => import('@/views/home/HomeView.vue'),
     redirect: '/welcome',
     children: [
-      { path: '/welcome', component: () => import('@/components/Welcome.vue') },
-      { path: '/users', component: () => import('@/components/user/Users.vue') },
-      { path: '/rights', component: () => import('@/components/power/Rights.vue') },
-      { path: '/roles', component: () => import('@/components/power/Roles.vue') },
-      { path: '/categories', component: () => import('@/components/goods/Cate.vue') },
-      { path: '/goods', component: () => import('@/components/goods/List.vue') },
-      { path: '/add', component: () => import('@/components/goods/Add.vue') },
-      { path: '/params', component: () => import('@/components/goods/Params.vue') },
-      { path: '/orders', component: () => import('@/components/order/Order.vue') },
-      { path: '/reports', component: () => import('@/components/report/Report.vue') }
+      { path: '/welcome', component: () => import('@/views/home/cpns/welcome/WelcomeCpn.vue') },
+      { path: '/users', component: () => import('@/views/home/cpns/user/UserCpn.vue') }
+      // { path: '/rights', component: () => import('@/views/home/power/Rights.vue') },
+      // { path: '/roles', component: () => import('@/views/home/power/Roles.vue') },
+      // { path: '/categories', component: () => import('@/views/home/goods/Cate.vue') },
+      // { path: '/goods', component: () => import('@/views/home/goods/List.vue') },
+      // { path: '/add', component: () => import('@/views/home/goods/Add.vue') },
+      // { path: '/params', component: () => import('@/views/home/goods/Params.vue') },
+      // { path: '/orders', component: () => import('@/views/home/order/Order.vue') },
+      // { path: '/reports', component: () => import('@/views/home/report/Report.vue') }
     ]
   },
   { path: '/:pathMatch(.*)', component: () => import('@/components/NotFound.vue') }
