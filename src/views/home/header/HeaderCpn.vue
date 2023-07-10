@@ -6,7 +6,7 @@
     <span>电商后台管理系统</span>
   </div>
   <!-- 登出按钮 -->
-  <el-button type="danger" @click="logout">退出</el-button>
+  <el-button type="info" @click="logout">退出</el-button>
 </template>
 
 <script setup lang="ts">

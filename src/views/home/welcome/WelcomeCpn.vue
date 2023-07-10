@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <div class="welcome">
+      <div class="img_box">
         <img src="@/assets/images/welcome.png" alt="" />
       </div>
     </el-card>
@@ -11,7 +11,12 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.welcome {
-  width: 70%;
+.img_box {
+  width: 80%;
+  height: 81vh;
+  margin: 0 auto;
+  img {
+    width: 100%;
+  }
 }
 </style>
