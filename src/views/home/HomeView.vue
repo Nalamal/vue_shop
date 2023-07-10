@@ -3,15 +3,15 @@
     <!-- 头部区域 -->
     <el-header>
       <!-- 头部组件 -->
-      <HomeHeader />
+      <HeaderCpn />
     </el-header>
     <el-container>
       <!-- 侧边栏菜单组件 -->
-      <HomeMenu />
+      <MenuCpn />
       <!-- 内容主要区域 -->
       <el-main>
         <!-- 路由占位符 -->
-        <router-view></router-view>
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
@@ -19,9 +19,9 @@
 
 <script setup lang="ts">
 // 引入头部组件
-import HomeHeader from './cpns/header/HomeHeader.vue'
+import HeaderCpn from './header/HeaderCpn.vue'
 // 引入侧边栏组件
-import HomeMenu from './cpns/menu/HomeMenu.vue'
+import MenuCpn from './menu/MenuCpn.vue'
 </script>
 
 <style lang="less" scoped>
@@ -37,6 +37,6 @@ import HomeMenu from './cpns/menu/HomeMenu.vue'
   align-items: center;
 }
 .el-main {
-  background-color: #eaedf1;
+  background-color: #f2f3f5;
 }
 </style>

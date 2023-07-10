@@ -1,7 +1,7 @@
 import { ref, type DefineComponent } from 'vue'
 import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
-import { selectMenu } from '@/service/modules/menu'
+import { getMenu } from '@/service/modules/menu'
 
 // 定义 menulist 的类型
 interface IMenulist {
@@ -19,7 +19,7 @@ const useMenuStore = defineStore('menuStore', () => {
   // 定义获取左侧菜单栏的方法
   const getMenulist = async () => {
     // 发送获取左侧菜单的请求
-    const res = await selectMenu()
+    const res = await getMenu()
     // 请求失败
     if (res.meta.status !== 200) {
       return ElMessage.error('获取左侧菜单失败！')

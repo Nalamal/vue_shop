@@ -11,7 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/goods/Add.vue')['default']
     AddCpn: typeof import('./src/components/add/AddCpn.vue')['default']
-    AddSearch: typeof import('./src/components/add-search/AddSearch.vue')['default']
+    AddSearch: typeof import('./src/components/search/AddSearch.vue')['default']
     BreadCrumb: typeof import('./src/components/breadcrumb/BreadCrumb.vue')['default']
     Cate: typeof import('./src/components/goods/Cate.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
@@ -56,12 +56,14 @@ declare module '@vue/runtime-core' {
     Login: typeof import('./src/components/Login.vue')['default']
     NotFound: typeof import('./src/components/NotFound.vue')['default']
     Order: typeof import('./src/components/order/Order.vue')['default']
+    PaginationCpn: typeof import('./src/components/pagination/PaginationCpn.vue')['default']
     Params: typeof import('./src/components/goods/Params.vue')['default']
     Report: typeof import('./src/components/report/Report.vue')['default']
     Rights: typeof import('./src/components/power/Rights.vue')['default']
     Roles: typeof import('./src/components/power/Roles.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchCpn: typeof import('./src/components/search/SearchCpn.vue')['default']
     Users: typeof import('./src/components/user/Users.vue')['default']
     Welcome: typeof import('./src/components/Welcome.vue')['default']
   }

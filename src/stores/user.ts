@@ -1,6 +1,7 @@
-import { selectUser } from '@/service/modules/user'
-import { defineStore } from 'pinia'
 import { ref, reactive } from 'vue'
+import { defineStore } from 'pinia'
+import { getUserlist } from '@/service/modules/user'
+import { ElMessage } from 'element-plus'
 
 // 定义 userlist 的类型
 interface IUserlist {
@@ -14,31 +15,35 @@ interface IUserlist {
 }
 
 const useUserStore = defineStore('userStore', () => {
-  // 表单列表的参数对象
+  // 获取用户列表的参数
   const queryInfo = reactive({
     query: '',
-    // 当前的页数
+    // 显示当前页数，默认显示第1页
     pagenum: 1,
-    // 当前每页显示多少条数据
+    // 当前每页显示多少条数据，默认每页显示2条
     pagesize: 2
   })
 
-  // 定义当前页数
-  const pagenum = ref(1)
-
-  // 定义返回的总条数
+  // 数据总条数
   const total = ref(0)
+
+  // 用户列表数据
+  const userlist = ref<IUserlist[]>([])
 
   // 定义获取用户列表的请求
   const getUserlistAction = async () => {
-    const res = await selectUser(queryInfo)
-    console.log(res)
+    // 发送获取用户列表的请求
+    const res = await getUserlist(queryInfo)
+    // 获取用户失败
+    if (res.meta.status !== 200) {
+      return ElMessage.error('获取用户列表失败！')
+    }
+    // 将返回的结果存储到数据仓库中
+    total.value = res.data.total
+    userlist.value = res.data.users
   }
 
-  // 控制添加表单对话框的显示与隐藏
-  const addDialogVisible = ref(false)
-
-  return { queryInfo, getUserlistAction, addDialogVisible }
+  return { queryInfo, total, userlist, getUserlistAction }
 })
 
 export default useUserStore

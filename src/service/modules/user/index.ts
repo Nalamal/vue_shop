@@ -3,7 +3,7 @@ import service from '@/service'
 import type { IUserlist } from '@/components/user/Users.vue'
 
 // 定义获取用户数据列表请求
-export const selectUser = (params: object) => {
+export const getUserlist = (params: object) => {
   return service.get({
     url: 'users',
     params
@@ -27,7 +27,7 @@ export const addUser = (data: object) => {
 }
 
 // 定义根据 id 查询角色的请求
-export const selectUserById = (id: number) => {
+export const getUserById = (id: number) => {
   return service.get({
     url: 'users/' + id,
     method: 'get'

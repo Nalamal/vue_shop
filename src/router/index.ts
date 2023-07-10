@@ -9,8 +9,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/home/HomeView.vue'),
     redirect: '/welcome',
     children: [
-      { path: '/welcome', component: () => import('@/views/home/cpns/welcome/WelcomeCpn.vue') },
-      { path: '/users', component: () => import('@/views/home/cpns/user/UserCpn.vue') }
+      { path: '/welcome', component: () => import('@/views/home/welcome/WelcomeCpn.vue') },
+      { path: '/users', component: () => import('@/views/home/user/UserCpn.vue') }
       // { path: '/rights', component: () => import('@/views/home/power/Rights.vue') },
       // { path: '/roles', component: () => import('@/views/home/power/Roles.vue') },
       // { path: '/categories', component: () => import('@/views/home/goods/Cate.vue') },
