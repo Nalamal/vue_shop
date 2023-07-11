@@ -60,7 +60,7 @@ vue_shop
 
 ```sh
 # github
-https://github.com/Nalamal/vue_shop.git
+https://github.com/Nalamal/nuxt_oppo.git
 ```
 
 - install
@@ -93,15 +93,19 @@ npm run lint
 npm run format
 ```
 
+- preview
+
+```sh
+npm run preview
+```
+
 ## 项目截图
 
 - 登录页
-  ![登录页](https://img1.imgtp.com/2023/07/11/J74C9rJt.jpg)
-- 首页
-- ![welcome](https://img1.imgtp.com/2023/07/11/kumirYNm.jpg)
-- 表格页
-  ![table](https://img1.imgtp.com/2023/07/11/OuklY27M.jpg)
-- Echart 图表页
-  ![echarts](https://img1.imgtp.com/2023/07/11/UGvSKGDF.jpg)
-- 404
-  ![404](https://img1.imgtp.com/2023/07/11/TswzANaC.jpg)
+  ![导航栏](https://img1.imgtp.com/2023/07/11/IzWiuxB5.jpg)
+- 商品分类
+  ![商品分类](https://img1.imgtp.com/2023/07/11/dzMucirM.jpg)
+- 商品展示
+  ![商品展示](https://img1.imgtp.com/2023/07/11/vIbU0hpd.jpg)
+- 页尾
+  ![页尾](https://img1.imgtp.com/2023/07/11/y82ez3Q9.jpg)
