@@ -38,10 +38,9 @@ vue_shop
 │  ├─ App.vue             # 项目主组件
 │  ├─ main.ts             # 项目入口文件
 ├─ .editorconfig          # 统一不同编辑器的编码风格
-├─ .eslintignore          # 忽略 Eslint 校验文件
 ├─ .eslintrc.cjs          # Eslint 校验配置文件
-├─ .prettierrc.json       # Prettier 格式化配置文件
 ├─ .gitignore             # 忽略 git 提交
+├─ .prettierrc.json       # Prettier 格式化配置文件
 ├─ auto-imports.d.ts      # 自动导入声明文件
 ├─ components.d.ts        # 导入组件声明文件
 ├─ env.d.ts               # 声明文件
@@ -60,7 +59,7 @@ vue_shop
 
 ```sh
 # github
-https://github.com/Nalamal/nuxt_oppo.git
+https://github.com/Nalamal/vue_shop.git
 ```
 
 - install
@@ -93,19 +92,15 @@ npm run lint
 npm run format
 ```
 
-- preview
-
-```sh
-npm run preview
-```
-
 ## 项目截图
 
 - 登录页
-  ![导航栏](https://img1.imgtp.com/2023/07/11/IzWiuxB5.jpg)
-- 商品分类
-  ![商品分类](https://img1.imgtp.com/2023/07/11/dzMucirM.jpg)
-- 商品展示
-  ![商品展示](https://img1.imgtp.com/2023/07/11/vIbU0hpd.jpg)
-- 页尾
-  ![页尾](https://img1.imgtp.com/2023/07/11/y82ez3Q9.jpg)
+  ![登录页](https://img1.imgtp.com/2023/07/11/J74C9rJt.jpg)
+- 首页
+- ![welcome](https://img1.imgtp.com/2023/07/11/kumirYNm.jpg)
+- 表格页
+  ![table](https://img1.imgtp.com/2023/07/11/OuklY27M.jpg)
+- Echarts 图表页
+  ![echarts](https://img1.imgtp.com/2023/07/11/UGvSKGDF.jpg)
+- 404
+  ![404](https://img1.imgtp.com/2023/07/11/TswzANaC.jpg)
