@@ -3,7 +3,7 @@
   <div>
     <el-aside :width="iscollapse ? '64px' : '200px'">
       <!-- 顶部控制按钮折叠区域 -->
-      <!-- <div class="toggle-button" @click="toggleCollapse">|||</div> -->
+      <div class="toggle-button" @click="toggleCollapse">|||</div>
       <!-- 菜单区域 -->
       <el-menu
         active-text-color="#409eff"
@@ -57,9 +57,9 @@ import { Avatar, Box, ShoppingBag, List, TrendCharts } from '@element-plus/icons
 const iscollapse = ref(false)
 
 // 点击按钮切换表单的折叠与展开
-// const toggleCollapse = () => {
-//   iscollapse.value = !iscollapse.value
-// }
+const toggleCollapse = () => {
+  iscollapse.value = !iscollapse.value
+}
 
 // 从 menu 仓库中取出数据
 const menu = useMenuStore()
@@ -105,6 +105,7 @@ activePath.value = window.sessionStorage.getItem('activePath')
 .toggle-button {
   font-size: 10px;
   color: #4a5064;
+  // background-color: #f2f3f5;
   line-height: 24px;
   text-align: center;
   letter-spacing: 0.2em;

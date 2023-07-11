@@ -95,7 +95,12 @@ npm run format
 ## 项目截图
 
 - 登录页
-  ![登录页](https://img1.imgtp.com/2023/07/10/hggpozfi.jpg)
+  ![登录页](https://img1.imgtp.com/2023/07/11/J74C9rJt.jpg)
 - 首页
+- ![welcome](https://img1.imgtp.com/2023/07/11/kumirYNm.jpg)
 - 表格页
-- Echart 图标页
+  ![table](https://img1.imgtp.com/2023/07/11/OuklY27M.jpg)
+- Echart 图表页
+  ![echarts](https://img1.imgtp.com/2023/07/11/UGvSKGDF.jpg)
+- 404
+  ![404](https://img1.imgtp.com/2023/07/11/TswzANaC.jpg)

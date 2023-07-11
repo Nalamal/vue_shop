@@ -60,8 +60,8 @@ const rules = reactive<FormRules>({
 
 // 登录表单数据
 const loginForm = reactive<IAccount>({
-  username: 'admin',
-  password: '123456'
+  username: '',
+  password: ''
 })
 
 // 从 loginStore 中拿到 loginAction 方法
