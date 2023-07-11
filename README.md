@@ -31,6 +31,7 @@ vue_shop
 │  ├─ assets              # 静态资源文件
 │  ├─ components          # 全局组件
 │  ├─ router              # 路由配置文件
+│  ├─ service             # axios 配置文件
 │  ├─ stores              # pinia 状态管理仓库
 │  ├─ utils               # 封装工具库
 │  ├─ views               # 项目页面文件
