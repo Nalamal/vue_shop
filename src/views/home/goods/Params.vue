@@ -201,7 +201,7 @@ import {
   selectCategoriesArributeById,
   updateCategoriesArribute,
   deleteCategoriesArribute
-} from '@/service/request'
+} from '@/service/modules/goods'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import type { FormInstance, FormRules, ElInput } from 'element-plus'
 import { ArrowRight, Edit, Delete } from '@element-plus/icons-vue'
@@ -221,7 +221,7 @@ const catelist = ref<ICatelist[]>([])
 
 // 获取商品分类的请求
 const getCatelist = async () => {
-  const { data: res } = await selectGoodsCategories()
+  const res = await selectGoodsCategories()
   if (res.meta.status !== 200) {
     return ElMessage.error('获取商品分类失败！')
   }
@@ -287,7 +287,7 @@ const cateId = computed(() => {
 // 获取参数的列表数据
 const getParamsData = async () => {
   // 根据所选分类的Id，和当前所处的面板，获取对应的参数
-  const { data: res } = await selectCategoriesArributes(cateId.value!, activeName.value)
+  const res = await selectCategoriesArributes(cateId.value!, activeName.value)
   if (res.meta.status !== 200) {
     return ElMessage.error('获取参数列表失败！')
   }
@@ -351,7 +351,7 @@ const addParams = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过
-      const { data: res } = await insertCategoriesArributes(
+      const res = await insertCategoriesArributes(
         cateId.value!,
         addForm.value.attr_name,
         activeName.value
@@ -372,7 +372,7 @@ const addParams = async (formEl: FormInstance | undefined) => {
 // 点击按钮，展示修改的对话框
 const showEditDialog = async (attr_id: number) => {
   // 查询当前参数的信息
-  const { data: res } = await selectCategoriesArributeById(cateId.value!, attr_id, activeName.value)
+  const res = await selectCategoriesArributeById(cateId.value!, attr_id, activeName.value)
   if (res.meta.status !== 200) {
     return ElMessage.error('获取参数信息失败！')
   }
@@ -408,7 +408,7 @@ const editParams = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过
-      const { data: res } = await updateCategoriesArribute(
+      const res = await updateCategoriesArribute(
         cateId.value!,
         editForm.value.attr_id,
         editForm.value.attr_name,
@@ -436,7 +436,7 @@ const removeParams = (id: number) => {
   })
     // 点击确认按钮
     .then(async () => {
-      const { data: res } = await deleteCategoriesArribute(cateId.value!, id)
+      const res = await deleteCategoriesArribute(cateId.value!, id)
       // 删除失败
       if (res.meta.status !== 200) return ElMessage.error('删除商品属性失败！')
 
@@ -481,7 +481,7 @@ const handleClose = (i: number, row: any) => {
 
 // 将对 attr_vals 的操作，将保存到数据库
 const saveAttrVals = async (row: any) => {
-  const { data: res } = await updateCategoriesArribute(
+  const res = await updateCategoriesArribute(
     cateId.value!,
     row.attr_id,
     row.attr_name,

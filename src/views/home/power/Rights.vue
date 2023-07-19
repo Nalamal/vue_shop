@@ -27,7 +27,7 @@
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
-import { selectListRights } from '@/service/request'
+import { selectListRights } from '@/service/modules/power'
 
 // 定义 rightList 的类型
 interface IRightslist {
@@ -43,7 +43,7 @@ let rightslist = ref<IRightslist[]>([])
 
 // 获取用户权限的请求
 const getUserRights = async () => {
-  const { data: res } = await selectListRights()
+  const res = await selectListRights()
   // 请求失败
   if (res.meta.status !== 200) return ElMessage.error('获取权限列表失败！')
   rightslist.value = res.data

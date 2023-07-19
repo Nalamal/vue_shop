@@ -134,7 +134,7 @@ import {
   selectGoodsCategoriesById,
   updateGoodsCategories,
   deleteGoodsCategories
-} from '@/service/request'
+} from '@/service/modules/goods'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessageBox, ElMessage } from 'element-plus'
 
@@ -163,7 +163,7 @@ let total = ref(0)
 
 // 获取商品分类的请求
 const getCatelist = async () => {
-  const { data: res } = await selectGoodsCategories(queryInfo)
+  const res = await selectGoodsCategories(queryInfo)
   if (res.meta.status !== 200) {
     return ElMessage.error('获取商品分类失败！')
   }
@@ -229,7 +229,7 @@ const cascaderProps = reactive({
 // 点击按钮，展示添加分类的对话框
 const showAddCateDialog = async () => {
   // 发送查询一级和二级分类列表请求
-  const { data: res } = await selectGoodsCategories({ type: 2 })
+  const res = await selectGoodsCategories({ type: 2 })
   if (res.meta.status !== 200) return ElMessage.error('查询父级分类失败！')
   // 将返回的结果存储到父级分类的列表中
   parentCatelist.value = res.data
@@ -267,7 +267,7 @@ const addCate = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过，发送请求
-      const { data: res } = await insertGoodsCategories(addCateForm)
+      const res = await insertGoodsCategories(addCateForm)
       if (res.meta.status !== 201) return ElMessage.error('添加商品分类失败！')
       ElMessage.success('添加商品分类成功!')
       // 影藏添加用户的对话框
@@ -298,7 +298,7 @@ let editCateForm = ref({
 // 点击编辑按钮，展开编辑分类的对话框
 const showEditCateDialog = async (id: number) => {
   // 发送根据 cat_id 寻找对应商品分类信息的请求
-  const { data: res } = await selectGoodsCategoriesById(id)
+  const res = await selectGoodsCategoriesById(id)
   if (res.meta.status !== 200) return ElMessage.error('查询分类失败！')
   editCateForm.value = res.data
   editCateDialogVisible.value = true
@@ -310,7 +310,7 @@ const editCate = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过，发送请求
-      const { data: res } = await updateGoodsCategories(editCateForm.value)
+      const res = await updateGoodsCategories(editCateForm.value)
       if (res.meta.status !== 200) return ElMessage.error('编辑商品分类失败！')
       ElMessage.success('编辑商品分类成功!')
       // 影藏添加用户的对话框
@@ -339,7 +339,7 @@ const removeCateById = async (id: number) => {
   })
     // 点击确认按钮
     .then(async () => {
-      const { data: res } = await deleteGoodsCategories(id)
+      const res = await deleteGoodsCategories(id)
       // 删除失败
       if (res.meta.status !== 200) return ElMessage.error('删除商品分类失败！')
 

@@ -176,7 +176,7 @@ import {
   deleteRoleRight,
   selectTreeRights,
   updateRoleRights
-} from '@/service/request'
+} from '@/service/modules/power'
 import { ArrowRight, Edit, Delete, Setting, CaretRight } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox, ElTree } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -194,7 +194,7 @@ let roleslist = ref<IRoleslist[]>([])
 
 // 定义获取所有角色列表的方法
 const getRolesList = async () => {
-  const { data: res } = await selectRoles()
+  const res = await selectRoles()
   if (res.meta.status !== 200) return ElMessage.error('获取角色列表失败！')
   roleslist.value = res.data
 }
@@ -226,8 +226,7 @@ const addRoles = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过，发送请求
-      const { data: res } = await insertRole(addForm.value)
-      console.log(res)
+      const res = await insertRole(addForm.value)
 
       if (res.meta.status !== 201) return ElMessage.error('添加用户角色失败！')
       ElMessage.success('添加用户角色成功!')
@@ -263,7 +262,7 @@ let editDialogVisible = ref(false)
 
 // 展示修改角色的对话框
 const showEditDialog = async (id: number) => {
-  const { data: res } = await selectRoleById(id)
+  const res = await selectRoleById(id)
   editForm.value = res.data
   editDialogVisible.value = true
 }
@@ -274,8 +273,7 @@ const editRoles = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       // 验证通过，发送请求
-      const { data: res } = await updateRole(editForm.value)
-      console.log(res)
+      const res = await updateRole(editForm.value)
 
       if (res.meta.status !== 200) return ElMessage.error('修改用户角色失败！')
       ElMessage.success('修改用户角色成功!')
@@ -305,7 +303,7 @@ const removeRoleById = async (id: number) => {
   })
     // 点击确认按钮
     .then(async () => {
-      const { data: res } = await deleteRole(id)
+      const res = await deleteRole(id)
 
       // 删除失败
       if (res.meta.status !== 200) return ElMessage.error('删除角色失败！')
@@ -403,7 +401,7 @@ const allotRights = async () => {
 
   const idStr = keys.join(',')
 
-  const { data: res } = await updateRoleRights(roleId.value, idStr)
+  const res = await updateRoleRights(roleId.value, idStr)
 
   if (res.meta.status !== 200) {
     ElMessage.error('分配权限失败！')

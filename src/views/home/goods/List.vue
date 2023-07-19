@@ -69,7 +69,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { ArrowRight, Search, Edit, Delete } from '@element-plus/icons-vue'
-import { selectGoods, deleteGood } from '@/service/request'
+import { selectGoods, deleteGood } from '@/service/modules/goods'
 import { ElMessage, ElMessageBox, dayjs } from 'element-plus'
 import router from '@/router'
 
@@ -109,7 +109,7 @@ let goodslist = ref<IGoodslist[]>([])
 
 // 根据分页获取对应的商品列表
 const getGoodsList = async () => {
-  const { data: res } = await selectGoods(queryInfo)
+  const res = await selectGoods(queryInfo)
   // 获取商品失败
   if (res.meta.status !== 200) {
     return ElMessage.error('获取商品列表失败！')
@@ -143,7 +143,7 @@ const removeGoodById = async (id: number) => {
   })
     // 点击确认按钮
     .then(async () => {
-      const { data: res } = await deleteGood(id)
+      const res = await deleteGood(id)
       // 删除失败
       if (res.meta.status !== 200) return ElMessage.error('删除商品失败！')
       // 删除成功，弹出提示消息

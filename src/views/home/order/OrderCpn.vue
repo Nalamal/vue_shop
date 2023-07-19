@@ -110,10 +110,10 @@ import BreadCrumb from '@/components/breadcrumb/BreadCrumb.vue'
 
 import { ref, reactive } from 'vue'
 import { ArrowRight, Search, Edit, Location } from '@element-plus/icons-vue'
-// import { selectOrders, selectLogistics } from '@/service/request'
+import { selectOrders, selectLogistics } from '@/service/modules/order'
 import { ElMessage, dayjs } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
-// import cityData from '@/utils/citydata'
+import cityData from '@/utils/citydata'
 
 // 查询条件
 const queryInfo = reactive({
@@ -148,7 +148,7 @@ let orderlist = ref<IOrderlist[]>([])
 
 // 获取订单数据列表的方法
 const getOrderlist = async () => {
-  const { data: res } = await selectOrders(queryInfo)
+  const res = await selectOrders(queryInfo)
   if (res.meta.status !== 200) return ElMessage.error('获取订单列表失败！')
   orderlist.value = res.data.goods
   total.value = res.data.total
@@ -214,7 +214,7 @@ let logisticsVisible = ref(false)
 
 // 展示物流信息的对话框
 const showLogisticsBox = async () => {
-  const { data: res } = await selectLogistics()
+  const res = await selectLogistics()
   if (res.meta.status !== 200) ElMessage.error('获取物流信息失败！')
   logisticsInfo.value = res.data
   logisticsVisible.value = true

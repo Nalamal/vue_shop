@@ -111,7 +111,7 @@ import { ref, reactive, computed } from 'vue'
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules, UploadProps } from 'element-plus'
-import { selectGoodsCategories, selectCategoriesArributes } from '@/service/request'
+import { selectGoodsCategories, selectCategoriesArributes } from '@/service/modules/goods'
 
 // tab 栏激活的索引号
 let activeIndex = ref(0)
