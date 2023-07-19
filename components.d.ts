@@ -10,7 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/goods/Add.vue')['default']
-    AddCpn: typeof import('./src/components/add/AddCpn.vue')['default']
+    AddCpn: typeof import('./src/components/add/addCpn.vue')['default']
     AddSearch: typeof import('./src/components/search/AddSearch.vue')['default']
     BreadCrumb: typeof import('./src/components/breadcrumb/BreadCrumb.vue')['default']
     Cate: typeof import('./src/components/goods/Cate.vue')['default']

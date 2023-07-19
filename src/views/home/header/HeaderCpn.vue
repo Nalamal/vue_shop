@@ -23,8 +23,9 @@ import { Search, Bell } from '@element-plus/icons-vue'
 
 // 退出功能
 const logout = () => {
-  // 清空 token
+  // 清空本地存储和会话存储
   window.localStorage.clear()
+  window.sessionStorage.clear()
   // 跳转路由，返回登录页
   router.push('/login')
 }
@@ -57,9 +58,10 @@ const logout = () => {
   align-items: center;
 
   img {
-    width: 58px;
-    height: 58px;
-    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    box-shadow: 0 0 10px #eee;
     border-radius: 50%;
   }
 }

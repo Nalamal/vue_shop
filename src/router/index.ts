@@ -21,12 +21,24 @@ const routes: Array<RouteRecordRaw> = [
       { path: '/reports', component: () => import('@/views/home/report/Report.vue') }
     ]
   },
-  { path: '/:pathMatch(.*)', component: () => import('@/components/NotFound.vue') }
+  // 未匹配到的路由
+  { path: '/:pathMatch(.*)', component: () => import('@/views/not-found/NotFoundView.vue') }
 ]
 
+// 创建路由实例对象
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// 挂载路由导航守卫
+router.beforeEach((to, from, next) => {
+  // next() 放行 next('/login') 强制跳转
+  if (to.path === '/login') return next()
+  // 获取 token
+  const tokenStr = window.localStorage.getItem('token')
+  if (!tokenStr) return next('/login')
+  next()
 })
 
 export default router

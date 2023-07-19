@@ -14,7 +14,7 @@
         </el-col>
         <el-col :span="4">
           <!-- 添加按钮 -->
-          <el-button type="primary" @click="addDialogVisible = true">添加用户</el-button>
+          <addCpn />
         </el-col>
       </el-row>
 
@@ -28,18 +28,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 // 引入面包屑导航组件
 import BreadCrumb from '@/components/breadcrumb/BreadCrumb.vue'
 // 引入添加搜索组件
-import SearchCpn from '@/components/search/SearchCpn.vue'
+import SearchCpn from './search/SearchCpn.vue'
+// 引入添加组件
+import addCpn from './add/addCpn.vue'
 // 引入用户列表组件
 import TableCpn from './table/TableCpn.vue'
 // 引入分页组件
 import PaginationCpn from '@/components/pagination/PaginationCpn.vue'
 
 // 获取表单列表的参数对象
-const queryInfo = reactive({
+const queryInfo = ref({
   query: '',
   // 当前的页数
   pagenum: 1,

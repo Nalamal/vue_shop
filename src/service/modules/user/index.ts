@@ -1,28 +1,30 @@
 // 导入service模块
 import service from '@/service'
-import type { IUserlist } from '@/components/user/Users.vue'
+import type { IUserlist, IEditForm } from '@/stores/user'
 
 // 定义获取用户数据列表请求
-export const getUserlist = (params: object) => {
+export const getUserlist = (queryInfo = { query: '', pagenum: 1, pagesize: 2 }) => {
   return service.get({
     url: 'users',
-    params
-  })
-}
-
-// 定义修改用户状态请求
-export const changeUserState = (data: IUserlist) => {
-  return service.put({
-    url: `users/${data.id}/state/${data.mg_state}`,
-    data
+    params: {
+      ...queryInfo
+    }
   })
 }
 
 // 定义添加用户的请求
-export const addUser = (data: object) => {
+export const addUserlist = (userlist: IUserlist) => {
   return service.post({
     url: 'users',
-    data
+    ...userlist
+  })
+}
+
+// 定义修改用户状态请求
+export const changeUserState = (userlist: IUserlist) => {
+  return service.put({
+    url: `users/${userlist.id}/state/${userlist.mg_state}`,
+    ...userlist
   })
 }
 
@@ -35,13 +37,13 @@ export const getUserById = (id: number) => {
 }
 
 // 定义编辑用户的请求
-export const updateUser = (userEditForm: any) => {
+export const editUserlist = (editForm: IEditForm) => {
   return service.put({
-    url: 'users/' + userEditForm.id,
+    url: 'users/' + editForm.id,
     method: 'put',
     data: {
-      email: userEditForm.email,
-      mobile: userEditForm.mobile
+      email: editForm.email,
+      mobile: editForm.mobile
     }
   })
 }
